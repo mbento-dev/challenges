@@ -2,18 +2,17 @@ import * as Knex from "knex";
 
 
 export async function up(knex: Knex): Promise<void> {
-    return knex.schema.createTable('heroes', function (table) {
+    return knex.schema.createTable('complete_occurrences', function (table) {
         table.string('id');
-        table.string('name').notNullable();
-        table.integer('heroPower').notNullable();
+        table.string('dangerLevel').notNullable();
+        table.string('monsterName').notNullable();
         table.float('lat').notNullable();
         table.float('lng').notNullable();
-        table.boolean('assigned').defaultTo(false);
     })
 }
 
 
 export async function down(knex: Knex): Promise<void> {
-    return knex.schema.dropTable('heroes');
+    return knex.schema.dropTable('complete_occurrences')
 }
 
