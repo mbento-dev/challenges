@@ -1,10 +1,10 @@
-import { CreateHeroRepo } from "../../repositories/implementations/CreateHeroRepo";
+import { HeroRepo } from "../../repositories/implementations/HeroRepo";
 import { CreateHeroUseCase } from "./CreateHeroUseCase";
 import { CreateHeroController } from "./CreateHeroController"
 
-const createHeroRepo = new CreateHeroRepo();
+const heroRepo = new HeroRepo();
 
-const createHeroUseCase = new CreateHeroUseCase(createHeroRepo);
+const createHeroUseCase = new CreateHeroUseCase(heroRepo);
 
 const createHeroController = new CreateHeroController(createHeroUseCase);
 

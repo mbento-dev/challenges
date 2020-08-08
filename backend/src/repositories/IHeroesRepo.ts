@@ -4,4 +4,5 @@ export interface IHeroesRepo{
     findByName(name: string): Promise<Hero>;
 
     save(hero: Hero): Promise<string>;
+    delete(heroId: string): Promise<void>;
 }

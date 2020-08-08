@@ -20,13 +20,11 @@ export class CreateHeroController{
             })
             if(!id) throw new Error('Error while creating hero')
             
-            return response.status(201).json({
-                id: id
-            });
+            return response.status(200).send();
         } catch (error) {
             return response.status(400).json({
                 message: error.message || 'Unexpected error'
-            })
+            });
         }
     }
 }

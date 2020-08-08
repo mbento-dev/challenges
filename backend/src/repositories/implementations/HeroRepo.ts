@@ -2,7 +2,8 @@ import { IHeroesRepo } from "../IHeroesRepo";
 import { Hero } from "../../entities/Hero";
 import { connection } from "../../database/connection";
 
-export class CreateHeroRepo implements IHeroesRepo{
+export class HeroRepo implements IHeroesRepo{
+
     async findByName(name: string): Promise<import("../../entities/Hero").Hero> {
         return (await connection('heroes').select('*').where('name', name).from<Hero>('heroes')).pop()
     }
@@ -20,6 +21,14 @@ export class CreateHeroRepo implements IHeroesRepo{
         } catch (error) {
             return null;
         }
+    }
+
+    async delete(heroId: string): Promise<void> {
+        try {
+        connection('heroes').where('id', heroId).del()
+    } catch (error) {
+        return null;
+    }
     }
 
 }
