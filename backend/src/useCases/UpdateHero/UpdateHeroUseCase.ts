@@ -9,10 +9,9 @@ export class UpdateHeroUseCase{
     }
 
     async execute(data: IUpdateHeroRequestDTO){
-        const heroExists = await this.heroesRepo.findByName(data.name);
+        const heroExists = await this.heroesRepo.findById(data.id);
 
         if(!heroExists) throw new Error('Hero doesn\'t exists.');
-        if(heroExists.id != data.id) throw new Error('Invalid Authentication ID.');
 
         return await this.heroesRepo.update(data);
     }

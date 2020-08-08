@@ -5,18 +5,16 @@ import { Hero } from "../../entities/Hero";
 import { getDistance } from 'geolib';
 
 export class DeployHeroRepo implements IDeployRepo{
-    async getOccurrence(id?:string): Promise<Occurrence> {
+    async getOccurrence(id?:string): Promise<Occurrence[]> {
         if(!id){
-            let occurrence = (await connection('ongoing_occurrences')
+            let occurrence = await connection('ongoing_occurrences')
                 .select('*').from<Occurrence>('ongoing_occurrences')
-                .limit(1))
-            return occurrence[0];
+            return occurrence;
         } else {
-            let occurrence = (await connection('ongoing_occurrences')
+            let occurrence = await connection('ongoing_occurrences')
                 .select('*').from<Occurrence>('ongoing_occurrences')
                 .where('id', id)
-                .limit(1))
-            return occurrence[0];
+            return occurrence;
         }
     }
 
@@ -39,7 +37,7 @@ export class DeployHeroRepo implements IDeployRepo{
         let tempHero:Hero;
         // checar se tem heróis na lista
         // remover heróis até cumprir o heroPowerNecessary
-        while(heroes && dangerLevelPower > 0) {
+        while(heroes.length > 0 && dangerLevelPower > 0) {
             tempHero = heroes.pop();
             dangerLevelPower -= tempHero.heroPower;
             assignedHeroes.push(tempHero.id);

@@ -16,6 +16,7 @@ export class DeleteHeroController{
                 id,
                 name,
             })
+            return response.status(200).send();
         } catch (error) {
             return response.status(401).json({
                 message: error.message || 'Unexpected authentication error'

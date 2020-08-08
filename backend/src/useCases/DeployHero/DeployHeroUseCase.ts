@@ -9,12 +9,11 @@ export class DeployHeroUseCase{
     }
 
     async execute(){
-        let occurrence:Occurrence 
+        let occurrences:Occurrence[] 
         let manageToDeploy: boolean;
-
-        do {
+        occurrences = await this.deployRepo.getOccurrence();
+        occurrences.forEach(async occurrence => {
             //Pega a primeira ocorrencia no banco
-            occurrence = await this.deployRepo.getOccurrence();
             if(!occurrence) return false;
             let heroPowerNecessary: number;
             let assignedHeroes:string[];
@@ -68,8 +67,8 @@ export class DeployHeroUseCase{
                 default:
                     break;
             }
-        } while (occurrence);
-        return manageToDeploy
+            
+        });
     }
 }
 

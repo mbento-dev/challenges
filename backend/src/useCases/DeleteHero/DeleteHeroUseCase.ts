@@ -11,7 +11,7 @@ export class DeleteHeroUseCase {
     async execute(data: IDeleteHeroRequestDTO){
         const heroExists = await this.heroesRepo.findByName(data.name);
 
-        if(!heroExists) throw new Error('Hero already exists.');
+        if(!heroExists) throw new Error('Hero doesn\'t exist.');
         if(heroExists.id != data.id) throw new Error('Invalid Authentication ID.');
 
         return await this.heroesRepo.delete(data.id);
