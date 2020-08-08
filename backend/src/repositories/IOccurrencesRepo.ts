@@ -1,6 +1,6 @@
-import { Occurrence } from "../entities/Occurrence";
+import { CompleteOccurrence } from "../entities/CompleteOccurrence";
 
 export interface IOccurrenceRepo{
-    index(): Promise<Occurrence[]>;
-    findByDL(dangerLevel: string): Promise<Occurrence[]>;
+    index(): Promise<CompleteOccurrence[]>;
+    findByDL(dangerLevel: string): Promise<CompleteOccurrence[]>;
 }

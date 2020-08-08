@@ -1,6 +1,6 @@
 import {IOccurrenceRepo} from '../../repositories/IOccurrencesRepo'
 
-export class indexOccurrencesUseCase{
+export class IndexOccurrencesUseCase{
     constructor(
         private occurrencesRepo: IOccurrenceRepo
     ){
@@ -11,5 +11,4 @@ export class indexOccurrencesUseCase{
         if(dangerLevel) return this.occurrencesRepo.findByDL(dangerLevel);
         return this.occurrencesRepo.index();
     }
-
 }

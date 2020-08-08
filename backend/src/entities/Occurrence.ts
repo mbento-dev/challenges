@@ -10,7 +10,7 @@ export class Occurrence{
     
 
     constructor(props: Omit<Occurrence, 'id'>, id?:string){
-        //Object.assign(this, props);
+        Object.assign(this, props);
 
         if(!id) {
             this.id = v4();
