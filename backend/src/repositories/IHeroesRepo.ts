@@ -5,4 +5,5 @@ export interface IHeroesRepo{
 
     save(hero: Hero): Promise<string>;
     delete(heroId: string): Promise<void>;
+    update(hero: Hero): Promise<void>;
 }

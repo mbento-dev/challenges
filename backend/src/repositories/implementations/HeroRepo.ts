@@ -24,11 +24,16 @@ export class HeroRepo implements IHeroesRepo{
     }
 
     async delete(heroId: string): Promise<void> {
-        try {
         connection('heroes').where('id', heroId).del()
-    } catch (error) {
-        return null;
     }
+    
+    async update(hero: Hero): Promise<void> {
+        connection('heroes').where('id', hero.id).update({
+            name: hero.name,
+            heroPower: hero.heroPower,
+            lat: hero.lat,
+            lng: hero.lng,
+        })
     }
 
 }
