@@ -3,6 +3,7 @@ import { router } from './routes'
 import socketIo from 'socket.io-client'
 import { connection } from './database/connection'
 import { Occurrence } from './entities/Occurrence'
+import { deployHeroController } from './useCases/DeployHero'
 
 const app = express()
 
@@ -12,7 +13,7 @@ app.use(router)
 const io = socketIo("https://zrp-challenge-socket.herokuapp.com:443")
 
 io.on('occurrence', async (occurrence)  => {
-    let teste = new Occurrence();
+    let teste = new Occurrence(occurrence);
     teste.dangerLevel = occurrence.dangerLevel;
     teste.monsterName = occurrence.monsterName;
     teste.lat = occurrence.location[0].lat;
@@ -25,7 +26,10 @@ io.on('occurrence', async (occurrence)  => {
         'lat': teste.lat,
         'lng': teste.lng,
     }]))
-    console.log(teste.lat);
+
+    const result = deployHeroController.handle(); 
+
+    console.log(teste);
 })
 
 export { app }

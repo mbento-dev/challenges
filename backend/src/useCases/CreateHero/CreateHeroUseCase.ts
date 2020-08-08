@@ -16,8 +16,8 @@ export class CreateHeroUseCase {
             throw new Error('Hero already exists.');
         }
 
-        const user = new Hero(data);
+        const hero = new Hero(data);
 
-        await this.heroesRepo.save(user);
+        return await this.heroesRepo.save(hero);
     }
 }

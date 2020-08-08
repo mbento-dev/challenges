@@ -1,6 +1,4 @@
 import { DeployHeroUseCase } from "./DeployHeroUseCase";
-import { Request, Response } from "express";
-import { Occurrence } from "../../entities/Occurrence";
 
 export class DeployHeroController{
     constructor (
@@ -9,8 +7,7 @@ export class DeployHeroController{
 
     }
 
-    async handle(request: Request, response: Response): Promise<boolean>{
-        const { id } = request.body
-        return await this.deployHeroUseCase.execute(id)
+    async handle(): Promise<boolean>{
+        return await this.deployHeroUseCase.execute()
     }
 }

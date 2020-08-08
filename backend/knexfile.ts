@@ -14,39 +14,20 @@ module.exports = {
     seeds: {
       directory: './src/database/seeds'
     },
-    
   },
-
-  staging: {
-    client: "postgresql",
+  
+  test: {
+    useNullAsDefault: true,
+    client: "sqlite3",
     connection: {
-      database: "my_db",
-      user: "username",
-      password: "password"
-    },
-    pool: {
-      min: 2,
-      max: 10
+      filename: "./src/database/db.mock.sqlite"
     },
     migrations: {
-      tableName: "knex_migrations"
-    }
-  },
-
-  production: {
-    client: "postgresql",
-    connection: {
-      database: "my_db",
-      user: "username",
-      password: "password"
+      directory: './src/database/migrations'
     },
-    pool: {
-      min: 2,
-      max: 10
+    seeds: {
+      directory: './src/database/seeds/mock'
     },
-    migrations: {
-      tableName: "knex_migrations"
-    }
   }
 
 };

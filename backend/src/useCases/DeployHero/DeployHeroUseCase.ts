@@ -1,7 +1,5 @@
-import { IDeployHeroRequestDTO } from "./DeployHeroDTO";
 import { IDeployRepo } from "../../repositories/IDeployRepo";
 import { Occurrence } from "../../entities/Occurrence";
-import { Hero } from "../../entities/Hero";
 
 export class DeployHeroUseCase{
     constructor(
@@ -10,50 +8,68 @@ export class DeployHeroUseCase{
 
     }
 
-    async execute(data: IDeployHeroRequestDTO){
-        let occurrence:Occurrence = await this.deployRepo.getOccurrence();
-        let heroPowerNecessary: number;
+    async execute(){
+        let occurrence:Occurrence 
+        let manageToDeploy: boolean;
 
-        switch (occurrence.dangerLevel) {
-            case 'God':
-                heroPowerNecessary = 60;
-                let assignedHeroes:string[] = await this.deployRepo.getHeroes(8001, 60);
-               
-                if(heroPowerNecessary <= 0) {
-                    this.deployRepo.deploy(occurrence, assignedHeroes)
-                }
-                else return false;
-
-                break;
-                
-            case 'Dragon':
-                heroPowerNecessary = 12;
-                // busque por heróis com HP <= 15
-                break;
-
-            case 'Tiger':
-                heroPowerNecessary = 3;
-                // busque por heróis com HP <= 4
-                break;
-                
-            case 'Wolf':
-                heroPowerNecessary = 1;
-                // busque por heróis com HP == 1
-                break;
-        
-            default:
-                break;
-        }
-
-
-
-        /* 
-            tentar cumprir o heroPower com heróis S/A/B/C com heroPower equivalentes a 90/15/4/1
-            um herói S só cumpre trabalhos com HP >= 60
-            um herói A só cumpre trabalhos com HP >= 12
-            um herói B só cumpre trabalhos com HP >= 3
-            um herói C aceita qualquer trabalho
-        */
+        do {
+            //Pega a primeira ocorrencia no banco
+            occurrence = await this.deployRepo.getOccurrence();
+            if(!occurrence) return false;
+            let heroPowerNecessary: number;
+            let assignedHeroes:string[];
+            
+            //Ajusta os níveis de perigo para níveis numéricos
+            switch (occurrence.dangerLevel) {
+                case 'God':
+                    heroPowerNecessary = 60;
+                    assignedHeroes = await this.deployRepo.getHeroes(8001, heroPowerNecessary, occurrence);
+                   
+                    if(+assignedHeroes.pop() <= 0) {
+                        this.deployRepo.deploy(occurrence, assignedHeroes)
+                        manageToDeploy = true;
+                    }
+                    else manageToDeploy = false;
+                    break
+                    
+                case 'Dragon':
+                    heroPowerNecessary = 12;
+                    assignedHeroes = await this.deployRepo.getHeroes(15, heroPowerNecessary, occurrence);
+                   
+                    if(+assignedHeroes.pop() <= 0) {
+                        this.deployRepo.deploy(occurrence, assignedHeroes)
+                        manageToDeploy = true;
+                    }
+                    else manageToDeploy = false;
+                    break
+    
+                case 'Tiger':
+                    heroPowerNecessary = 3;
+                    assignedHeroes = await this.deployRepo.getHeroes(4, heroPowerNecessary, occurrence);
+                   
+                    if(+assignedHeroes.pop() <= 0) {
+                        this.deployRepo.deploy(occurrence, assignedHeroes)
+                        manageToDeploy = true;
+                    }
+                    else manageToDeploy = false;
+                    break
+                    
+                case 'Wolf':
+                    heroPowerNecessary = 1;
+                    assignedHeroes = await this.deployRepo.getHeroes(1, heroPowerNecessary, occurrence);
+                    
+                    if(+assignedHeroes.pop() <= 0) {
+                        this.deployRepo.deploy(occurrence, assignedHeroes)
+                        manageToDeploy = true;
+                    }
+                    else manageToDeploy = false;
+                    break
+            
+                default:
+                    break;
+            }
+        } while (occurrence);
+        return manageToDeploy
     }
 }
 

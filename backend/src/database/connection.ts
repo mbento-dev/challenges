@@ -1,6 +1,12 @@
 import knex from 'knex';
 import configuration from '../../knexfile'
 
-const connection = knex(configuration.development);
+let connection:knex;
+
+if (process.env.NODE_ENV === "test") {
+    connection = knex(configuration.test)
+  } else {
+    connection = knex(configuration.development)
+  }
 
 export {connection}

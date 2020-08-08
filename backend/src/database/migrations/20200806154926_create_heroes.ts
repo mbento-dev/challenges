@@ -3,8 +3,8 @@ import * as Knex from "knex";
 
 export async function up(knex: Knex): Promise<void> {
     return knex.schema.createTable('heroes', function (table) {
-        table.string('id');
-        table.string('name').notNullable();
+        table.string('id').unique();
+        table.string('name').notNullable().unique();
         table.integer('heroPower').notNullable();
         table.float('lat').notNullable();
         table.float('lng').notNullable();

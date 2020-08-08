@@ -1,7 +1,6 @@
 export interface ICreateHeroRequestDTO{
     name: string;
-    rank: string;
+    heroPower: number;
     lat: number;
     lng: number;
-    assigned: boolean;
 }

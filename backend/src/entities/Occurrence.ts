@@ -9,7 +9,7 @@ export class Occurrence{
     public lng: number;
     
 
-    constructor(id?:string){
+    constructor(props: Omit<Occurrence, 'id'>, id?:string){
         //Object.assign(this, props);
 
         if(!id) {

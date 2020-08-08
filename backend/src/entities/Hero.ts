@@ -7,7 +7,6 @@ export class Hero{
     public heroPower: number;
     public lat: number;
     public lng: number;
-    public assigned: boolean
 
     constructor(props: Omit<Hero, 'id'>, id?: string){
         Object.assign(this, props);
