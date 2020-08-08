@@ -6,13 +6,70 @@ Cada caso de uso foi baseado em uma interface localizada no package repositories
 
 Cada caso de uso foi implementado através do index.ts que acompanha o seu devido caso de uso.
 
-## Criação de heróis
+
+
+## Heróis
+
+
+
+# Estrutura de dados de um herói
+
+id: UUID gerado durante a criação do herói
+name: string/varchar(255) único não nulo.
+heroPower: number/integer não nulo
+lat: number/float não nulo
+lng: number/float não nulo
+
+# Criação de heróis
 
 Não poderão ser criados heróis com nomes iguais.
 
 Heróis se autenticarão através do UUID gerado e fornecido durante a sua criação.
 
+# Listagem de heróis
+
+Heróis poderam ser encontrados a partir dos seus nomes, ids ou heroPowers.
+
+# Remoção de heróis
+
+Para remover um herói é necessário o nome e seu id falhando na ausência de qualquer um dos dois.
+
+# Edição de heróis
+
+Só é possivel editar um herói que se conheça o id, todos os campos podem ser alterados exceto o id.
+
+
+
+## Ocorrências
+
+
+
+# Estrutura de dados de uma ocorrência
+
+id: UUID gerado durante a criação do herói
+dangerLevel: string/varchar(255) não nulo.
+monsterName: string/varchar(255) não nulo.
+lat: number/float não nulo
+lng: number/float não nulo
+
+# Ocorrências em andamento
+
+As ocorrências em andamento são carregadas no banco de dados antes de serem processadas, caso não possam ser concluídas permaneceram separadas até que um herói adequado esteja disponível.
+
+# Ocorrências em andamento
+
+As ocorrências concluídas são conectadas aos heróis que participaram da sua conclusão através de uma tabela intermediária uma vez que a interação das duas tabelas é de muitos pra muitos.
+
+# Estrutura de dados da tabela intermediaria Ocorrencia/Herói
+
+heroId: string/varchar(255)
+occurrenceId: string/varchar(255)
+
+
+
 ## Deployment de heróis
+
+
 
 O ranque do heróis será tratado pelo backend como uma variável numérica onde os ranques [S,A,B,C] serão [90,15,4,1] isso foi feito para facilitar o tratamento do deploy de multiplos heróis de baixo nível em uma ocorrência perigosa. Vale lembrar que esta mudança será apenas no backend e não deve ter influencia no front.
 

@@ -8,7 +8,6 @@ export async function up(knex: Knex): Promise<void> {
         table.integer('heroPower').notNullable();
         table.float('lat').notNullable();
         table.float('lng').notNullable();
-        table.boolean('assigned').defaultTo(false);
     })
 }
 
