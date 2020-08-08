@@ -13,7 +13,7 @@ export class CreateHeroUseCase {
         const heroAlreadyExists = await this.heroesRepo.findByName(data.name);
 
         if(heroAlreadyExists){
-            throw new Error('Hero already exists.');
+            throw new Error("Hero already exists.");
         }
 
         const hero = new Hero(data);
