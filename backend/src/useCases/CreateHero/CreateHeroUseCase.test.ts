@@ -1,11 +1,8 @@
 import { CreateHeroUseCase } from "./CreateHeroUseCase"
-import { Hero } from "../../entities/Hero"
 import { HeroMockRepo } from "../../repositories/mocks/HeroRepo.mock"
 import { validate } from "uuid"
 
 test('Deve retornar true ao inserir', async () => {
-    let heroes:Hero[] = []
-
     const heroMockRepo:HeroMockRepo = new HeroMockRepo();
 
     const createHeroUseCase:CreateHeroUseCase = new CreateHeroUseCase(heroMockRepo);
@@ -21,24 +18,25 @@ test('Deve retornar true ao inserir', async () => {
 })  
 
 
-test('whatever', async () => {
-    let heroes = []
-
+test('Deve retornar erro contendo hero na mensagem', async () => {
     const heroMockRepo:HeroMockRepo = new HeroMockRepo();
 
     const createHeroUseCase:CreateHeroUseCase = new CreateHeroUseCase(heroMockRepo);
 
-    await createHeroUseCase.execute({
-        name: 'sadasd',
-        heroPower: 90,
-        lat: 33,
-        lng: 33
-    })
+    async function createSame(){
+        await createHeroUseCase.execute({
+            name: 'sadasd',
+            heroPower: 90,
+            lat: 33,
+            lng: 33
+        })
+        await createHeroUseCase.execute({
+            name: 'sadasd',
+            heroPower: 90,
+            lat: 33,
+            lng: 33
+        })
+    }
 
-    expect(createHeroUseCase.execute({
-        name: 'sadasd',
-        heroPower: 90,
-        lat: 33,
-        lng: 33
-    })).toThrow(Error)
-})  
+    await expect(createSame()).rejects.toThrowError("Hero already exists.")
+})

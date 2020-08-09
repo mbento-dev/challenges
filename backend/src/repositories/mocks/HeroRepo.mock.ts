@@ -2,7 +2,22 @@ import { IHeroesRepo } from "../IHeroesRepo";
 import { Hero } from "../../entities/Hero";
 
 export class HeroMockRepo implements IHeroesRepo{
-    private heroes:Hero[] = [];
+    private heroes:Hero[] = [
+        {
+            id: '0',
+            name: 'mockingBirb',
+            heroPower: 90,
+            lat: 33,
+            lng: 33
+        },
+        {
+            id: '1',
+            name: 'mockingJay',
+            heroPower: 15,
+            lat: 33,
+            lng: 33
+        }
+    ];
 
     async findByName(name: string): Promise<Hero> {
         return this.heroes.find(hero => hero.name == name);
@@ -13,7 +28,7 @@ export class HeroMockRepo implements IHeroesRepo{
     }
     
     async findByHP(heroPower: number): Promise<Hero[]> {
-        return this.heroes.filter(hero => hero.heroPower != heroPower);
+        return this.heroes.filter(hero => hero.heroPower == heroPower);
     }
     
     async index(): Promise<Hero[]> {
