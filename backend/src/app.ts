@@ -1,18 +1,17 @@
 import express, { json } from 'express'
 import { router } from './routes'
 import socketIo from 'socket.io-client'
-import { connection } from './database/connection'
-import { Occurrence } from './entities/Occurrence'
-import { deployHeroController } from './useCases/DeployHero'
+import cors from 'cors'
 
 const app = express()
 
+app.use(cors())
 app.use(express.json())
 app.use(router)
 
 const io = socketIo("https://zrp-challenge-socket.herokuapp.com:443")
 
-io.on('occurrence', async (occurrence)  => {
+/*io.on('occurrence', async (occurrence)  => {
     let teste = new Occurrence(occurrence);
     teste.dangerLevel = occurrence.dangerLevel;
     teste.monsterName = occurrence.monsterName;
@@ -30,6 +29,6 @@ io.on('occurrence', async (occurrence)  => {
     const result = deployHeroController.handle(); 
 
     console.log(teste);
-})
+})*/
 
 export { app }

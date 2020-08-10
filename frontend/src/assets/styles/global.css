@@ -34,3 +34,33 @@ html, body, #root{
 
     background-color: beige;
 }
+
+#page-register{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+    width: 100%;
+
+    background-color: beige;
+}
+
+#register-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#register-rank-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#register-location-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

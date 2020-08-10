@@ -10,13 +10,13 @@ export class CreateHeroController{
 
     async handle(request: Request, response: Response): Promise<Response>{
         const { name, heroPower, lat, lng} = request.body;
-
+        
         try {
             const id = await this.createHeroUseCase.execute({
-                name,
-                heroPower,
-                lat,
-                lng
+                name:name,
+                heroPower:+heroPower,
+                lat:+lat,
+                lng:+lng
             })
             if(!id) throw new Error('Error while creating hero')
             
