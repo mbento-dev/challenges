@@ -9,6 +9,7 @@ export class DeleteHeroUseCase {
     }
 
     async execute(data: IDeleteHeroRequestDTO){
+        console.log(data)
         const heroExists = await this.heroesRepo.findByName(data.name);
 
         if(!heroExists) throw new Error('Hero doesn\'t exist.');

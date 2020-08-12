@@ -10,12 +10,10 @@ export class IndexOccurrencesController{
     }
 
     async handle(request: Request, response: Response){
-        const {dangerLevel} = request.body;
-
+        const {dangerLevel} = request.headers;
         try {
             const occurrences:CompleteOccurrence[] = await this.indexOccurrencesUseCase.execute(dangerLevel)
-
-            return response.status(200).json(occurrences)
+            return response.status(200).json(occurrences)   
         } catch (error) {
             return response.status(400).json({
                 message: error.message || 'Unexpected Error'

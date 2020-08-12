@@ -9,6 +9,7 @@ export class UpdateHeroUseCase{
     }
 
     async execute(data: IUpdateHeroRequestDTO){
+        console.log(data);
         const heroExists = await this.heroesRepo.findById(data.id);
 
         if(!heroExists) throw new Error('Hero doesn\'t exists.');

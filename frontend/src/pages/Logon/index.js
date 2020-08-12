@@ -7,7 +7,7 @@ function Logon() {
     const [id, setId] = useState('');
     const history = useHistory();
 
-    async function handleLogin(e: React.FormEvent<HTMLFormElement>){
+    async function handleLogin(e){
         e.preventDefault();
         if(id === ''){
             return
@@ -25,7 +25,11 @@ function Logon() {
             const response = await api.get('heroes', formData)
             console.log(response)
 
+            localStorage.setItem('name', response.data[0].name);
             localStorage.setItem('heroId', response.data[0].id);
+            localStorage.setItem('lat', response.data[0].lat);
+            localStorage.setItem('lng', response.data[0].lng);
+            localStorage.setItem('heroPower', response.data[0].heroPower);
 
             history.push('/profile')
         } catch (error) {
@@ -34,8 +38,7 @@ function Logon() {
     }
 
     return (
-        <div id="page-logon">
-            <HeaderComp />
+        <div id="page-logon" className="normal-page">
             <form onSubmit={handleLogin} id="logon-form">
                 <input 
                     placeholder="Insira sua ID"
@@ -44,7 +47,9 @@ function Logon() {
                 <button type="submit"> Log in </button>
             </form>
             
-            <button type="button" onClick={() => history.push('/register')}> Register </button>
+            <button type="button" onClick={() => history.push('/register')}> Registrar-se </button>
+
+            <button type="button" onClick={() => history.push('/occurrences')}> Veja o que nosso heróis tem feito </button>
         </div>
     )
 }

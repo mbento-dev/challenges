@@ -1,16 +1,16 @@
-import { useHistory } from "react-router-dom";
-import React, { useState } from "react";
-import HeaderComp from "../../components/HeaderComp";
-import api from "../../services/api";
+import React, { useState } from 'react'
+import HeaderComp from '../../components/HeaderComp'
+import { useHistory } from 'react-router-dom';
+import api from '../../services/api';
 
-function Register() {
-    const [name, setName] = useState('');
-    const [rank, setRank] = useState('');
-    const [lat, setLat] = useState('');
-    const [lng, setLng] = useState('');
+function Profile() {
+    const [name, setName] = useState(localStorage.getItem('name') || '');
+    const [rank, setRank] = useState(localStorage.getItem('heroPower') || '');
+    const [lat, setLat] = useState(localStorage.getItem('lat') || '');
+    const [lng, setLng] = useState(localStorage.getItem('lng') || '');
     const history = useHistory();
-
-    async function handleCreate(e: React.FormEvent<HTMLFormElement>){
+    
+    async function handleUpdate(e){
         e.preventDefault();
         try {
             if(!rank) {
@@ -18,25 +18,38 @@ function Register() {
                 return
             }
             const formData = {
+                id: localStorage.getItem('heroId'),
                 name: name,
                 heroPower: rank,
                 lat: lat,
                 lng: lng
             }
 
-            const response = await api.post('heroes', formData)
-            alert("O seu herói foi criado com sucesso guarde o seu ID para futuras atualizações das sua informações " + response.data)
-
-            history.push('/')
+            const response = await api.put('heroes', formData)
+            console.log(response)
         } catch (error) {
             alert('falha no login')
         }
     }
 
+    async function handleDelete(){
+        try {
+            const formData = {
+                headers: {
+                    id: localStorage.getItem('heroId'),
+                    name: name,
+                }
+            }
+
+            await api.delete('heroes', formData)
+        } catch (error) {
+            alert(error)
+        }
+    }
+
     return (
-        <div id="page-register">
-            <HeaderComp />
-            <form onSubmit={handleCreate} id="register-form">
+        <div id="page-profile" className="normal-page">
+            <form onSubmit={handleUpdate} id="register-form">
                 <input 
                     placeholder="Insira seu nome."
                     value={name}
@@ -75,11 +88,21 @@ function Register() {
                 </span>
                 <span>
                     <button type="submit"> Submit </button>
-                    <button type="reset" onClick={() => history.push('/')}> Cancelar </button>
+                    <button type="reset" onClick={async () =>{
+                        await handleDelete();
+                        alert('Este perfil foi removido.');
+                        localStorage.clear();
+                        history.push('/');
+                    }}> Deletar perfil </button>
+                    <button onClick={() => {
+                        localStorage.clear();
+                        history.push('/');
+                    }}> Cancelar </button>
                 </span>
             </form>
         </div>
     )
+
 }
 
-export default Register
+export default Profile

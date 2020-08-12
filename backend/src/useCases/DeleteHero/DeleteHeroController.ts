@@ -9,7 +9,7 @@ export class DeleteHeroController{
     }
 
     async handle(request:Request, response:Response){
-        const {id, name} = request.body;
+        const {id, name} = request.headers;
 
         try {
             await this.deleteHeroUseCase.execute({

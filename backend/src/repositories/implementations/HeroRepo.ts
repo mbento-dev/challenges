@@ -36,6 +36,7 @@ export class HeroRepo implements IHeroesRepo{
 
     async delete(heroId: string): Promise<void> {
         await connection('heroes').where('id', heroId).del()
+        await connection('log_occurrences').where('heroId', heroId).del()
     }
     
     async update(hero: Hero): Promise<void> {

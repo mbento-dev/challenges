@@ -1,5 +1,5 @@
 :root{
-    font-size: 60%;
+    font-size: 80%;
 }
 
 *{
@@ -24,26 +24,17 @@ html, body, #root{
 }
 
 
-#page-logon{
+.normal-page{
     display: flex;
     justify-content: center;
     align-items: center;
 
-    height: 100%;
+    height: 90vh;
     width: 100%;
 
     background-color: beige;
-}
 
-#page-register{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    height: 100%;
-    width: 100%;
-
-    background-color: beige;
+    flex-direction: column;
 }
 
 #register-form{
@@ -63,4 +54,25 @@ html, body, #root{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#occurrences-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    height: inherit;
+
+    list-style: none;
+}
+
+#occurrence-entry{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 5px;
+    border: 2px solid wheat;
+    border-radius: 2px;
 }
