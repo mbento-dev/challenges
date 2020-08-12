@@ -1,4 +1,4 @@
-# Instrução de execução
+# Instruções de execução
 
 ## Backend
 
