@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import HeaderComp from '../../components/HeaderComp'
 import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
@@ -26,9 +25,8 @@ function Profile() {
             }
 
             const response = await api.put('heroes', formData)
-            console.log(response)
         } catch (error) {
-            alert('falha no login')
+            alert(error)
         }
     }
 
@@ -42,6 +40,10 @@ function Profile() {
             }
 
             await api.delete('heroes', formData)
+            
+            alert('Este perfil foi removido.');
+            localStorage.clear();
+            history.push('/');
         } catch (error) {
             alert(error)
         }
@@ -87,12 +89,9 @@ function Profile() {
                         onChange={e => setLng(e.target.value)}/>
                 </span>
                 <span>
-                    <button type="submit"> Submit </button>
+                    <button type="submit"> Atualizar </button>
                     <button type="reset" onClick={async () =>{
                         await handleDelete();
-                        alert('Este perfil foi removido.');
-                        localStorage.clear();
-                        history.push('/');
                     }}> Deletar perfil </button>
                     <button onClick={() => {
                         localStorage.clear();

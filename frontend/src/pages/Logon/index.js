@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import HeaderComp from '../../components/HeaderComp'
 import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
@@ -23,7 +22,6 @@ function Logon() {
             }
 
             const response = await api.get('heroes', formData)
-            console.log(response)
 
             localStorage.setItem('name', response.data[0].name);
             localStorage.setItem('heroId', response.data[0].id);

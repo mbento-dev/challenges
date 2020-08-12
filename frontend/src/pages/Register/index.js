@@ -1,6 +1,5 @@
 import { useHistory } from "react-router-dom";
 import React, { useState } from "react";
-import HeaderComp from "../../components/HeaderComp";
 import api from "../../services/api";
 
 function Register() {
@@ -13,8 +12,8 @@ function Register() {
     async function handleCreate(e){
         e.preventDefault();
         try {
-            if(!rank) {
-                alert('Selecione um rank')
+            if(!rank || !name || !lat || !lng || isNaN(parseFloat(lat)) || isNaN(parseFloat(lng)) ) {
+                alert('Preencha todos os campos')
                 return
             }
             const formData = {
@@ -73,7 +72,7 @@ function Register() {
                         onChange={e => setLng(e.target.value)}/>
                 </span>
                 <span>
-                    <button type="submit"> Submit </button>
+                    <button type="submit"> Cadastrar </button>
                     <button type="reset" onClick={() => history.push('/')}> Cancelar </button>
                 </span>
             </form>

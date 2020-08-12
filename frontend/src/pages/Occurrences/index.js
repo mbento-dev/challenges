@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import HeaderComp from '../../components/HeaderComp'
 import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
@@ -18,7 +17,7 @@ function Occurrences() {
             <button onClick={()=> history.push('/')}>Retornar para o login</button>
             <ul id="occurrences-list">
                 {occurrences.map(occurrence => (
-                    <li id="occurrence-entry" key={occurrence.occurrenceId}>
+                    <li id="occurrence-entry" key={(occurrence.occurrenceId)}>
                         <strong>HEROI:</strong>
                         <p>{occurrence.name}</p>
 
