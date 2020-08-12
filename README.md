@@ -24,43 +24,43 @@ npm run start
 
 ## Seed de heróis
 
-[
-  {
-    "id": "1",
-    "name": "Careca da Capa",
-    "heroPower": 4,
-    "lat": -23.678120573363277,
-    "lng": -53.71158383773698
-  },
-  {
-    "id": "2",
-    "name": "Tornado de Terror",
-    "heroPower": 90,
-    "lat": 52.429844295872414,
-    "lng": 13.56350255859534
-  },
-  {
+[<br/>
+  {<br/>
+    "id": "1",<br/>
+    "name": "Careca da Capa",<br/>
+    "heroPower": 4,<br/>
+    "lat": -23.678120573363277,<br/>
+    "lng": -53.71158383773698<br/>
+  },<br/>
+  {<br/>
+    "id": "2",<br/>
+    "name": "Tornado de Terror",<br/>
+    "heroPower": 90,<br/>
+    "lat": 52.429844295872414,<br/>
+    "lng": 13.56350255859534<br/>
+  },<br/>
+  {<br/>
     "id": "3",
-    "name": "Nevasca do Inferno",
-    "heroPower": 4,
-    "lat": -58.64891,
-    "lng": -54.94572
-  },
-  {
-    "id": "4",
-    "name": "Marco zero",
-    "heroPower": 4,
-    "lat": -23.458788656702264,
-    "lng": -57.41827163629626
-  },
-  {
-    "id": "5",
-    "name": "Ciclista Sem Licença",
-    "heroPower": 1,
-    "lat": 45.843053674656446,
-    "lng": 18.859412687837064
-  }
-]
+    "name": "Nevasca do Inferno",<br/>
+    "heroPower": 4,<br/>
+    "lat": -58.64891,<br/>
+    "lng": -54.94572<br/>
+  },<br/>
+  {<br/>
+    "id": "4",<br/>
+    "name": "Marco zero",<br/>
+    "heroPower": 4,<br/>
+    "lat": -23.458788656702264,<br/>
+    "lng": -57.41827163629626<br/>
+  },<br/>
+  {<br/>
+    "id": "5",<br/>
+    "name": "Ciclista Sem Licença",<br/>
+    "heroPower": 1,<br/>
+    "lat": 45.843053674656446,<br/>
+    "lng": 18.859412687837064<br/>
+  }<br/>
+]<br/>
 
 
 ## Frontend
@@ -80,11 +80,11 @@ npm run start
 
 # Estrutura de dados de um herói
 
-id: UUID gerado durante a criação do herói
-name: string/varchar(255) único não nulo.
-heroPower: number/integer não nulo
-lat: number/float não nulo
-lng: number/float não nulo
+id: UUID gerado durante a criação do herói<br/>
+name: string/varchar(255) único não nulo.<br/>
+heroPower: number/integer não nulo<br/>
+lat: number/float não nulo<br/>
+lng: number/float não nulo<br/>
 
 # Criação de heróis
 
@@ -111,11 +111,11 @@ Só é possivel editar um herói que se conheça o id, todos os campos podem ser
 
 # Estrutura de dados de uma ocorrência
 
-id: UUID gerado durante a criação do herói
-dangerLevel: string/varchar(255) não nulo.
-monsterName: string/varchar(255) não nulo.
-lat: number/float não nulo
-lng: number/float não nulo
+id: UUID gerado durante a criação do herói<br/>
+dangerLevel: string/varchar(255) não nulo.<br/>
+monsterName: string/varchar(255) não nulo.<br/>
+lat: number/float não nulo<br/>
+lng: number/float não nulo<br/>
 
 # Ocorrências em andamento
 
@@ -127,8 +127,8 @@ As ocorrências concluídas são conectadas aos heróis que participaram da sua 
 
 # Estrutura de dados da tabela intermediaria Ocorrencia/Herói
 
-heroId: string/varchar(255)
-occurrenceId: string/varchar(255)
+heroId: string/varchar(255)<br/>
+occurrenceId: string/varchar(255)<br/>
 
 
 
